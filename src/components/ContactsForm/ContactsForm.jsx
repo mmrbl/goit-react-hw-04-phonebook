@@ -1,6 +1,6 @@
-import { nanoid } from 'nanoid'
-import { Component } from 'react'
-import { Button, Form, Input, Label } from './ContactsForm.styled'
+import { nanoid } from 'nanoid';
+import { Component } from 'react';
+import { Button, Form, Input, Label } from './ContactsForm.styled';
 
 export default class ContacsForm extends Component {
   state = {

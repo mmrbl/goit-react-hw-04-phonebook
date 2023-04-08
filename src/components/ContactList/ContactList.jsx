@@ -1,6 +1,7 @@
-import ContactItem from 'components/ContactItem'
-import { Component } from 'react'
-import { Ul } from './ContactList.styled'
+import ContactItem from 'components/ContactItem';
+import { PropTypes } from 'prop-types';
+import { Component } from 'react';
+import { Ul } from './ContactList.styled';
 
 export default class ContactList extends Component {
     
@@ -20,3 +21,8 @@ export default class ContactList extends Component {
   }
 }
 
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  filteredContacts: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+}

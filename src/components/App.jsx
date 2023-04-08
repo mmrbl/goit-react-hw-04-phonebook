@@ -20,7 +20,6 @@ export class App extends Component {
   onFormChange = (newContact) => {
     const isIncluded = this.state.contacts.some((contact) => contact.name.toLowerCase() === newContact.name.toLowerCase())
 
-    console.log(isIncluded)
     if (isIncluded) {
       alert(`${this.toTitleCase(newContact.name)} is already in contacts.`)
     } else {
@@ -52,7 +51,7 @@ export class App extends Component {
   handleDelete = (id) => {
    this.setState((prevState) => ({
       contacts: prevState.contacts.filter((contact) => contact.id !== id),
-    }))
+   }))
   }
 
   render() {
