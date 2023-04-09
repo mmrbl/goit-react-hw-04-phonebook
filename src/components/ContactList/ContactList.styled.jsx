@@ -5,8 +5,9 @@ export const Ul = styled.ul`
   margin-left: 20px;
   padding: 0;
   list-style: none;
-  height: 50%;
+  min-height: max-content;
+  max-height: 350px;
   text-align: start ;
-  overflow-y: scroll ;
-
+  overflow-y: scroll;
+  /* outline: 2px solid red; */
 `

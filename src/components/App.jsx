@@ -8,12 +8,7 @@ import Filter from './Filter'
 
 export class App extends Component {
   state = {
-  contacts: [
-    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  ],
+  contacts: [],
   filter: '',
 }
 
@@ -43,9 +38,11 @@ export class App extends Component {
   }
 
   handleFilter = () => {
-    return this.state.contacts.filter((contact) =>
+    if (this.state.contacts.length > 0) {
+      return this.state.contacts.filter((contact) =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     )
+    }
   }
 
   handleDelete = (id) => {
@@ -56,11 +53,15 @@ export class App extends Component {
 
   componentDidMount() {
     const parsedContacts = JSON.parse(localStorage.getItem('contacts'))
-    this.setState({contacts: parsedContacts})
+    if (parsedContacts && parsedContacts.length > 0) {
+      this.setState({contacts: parsedContacts})
+    } else {
+      this.setState({contacts: []})
+    }
+
   }
   
   componentDidUpdate(prevProps, prevState) { 
-    console.log('update')
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
     }
@@ -75,10 +76,22 @@ export class App extends Component {
     <Container>
       <h1>Phonebook</h1>
       <ContactsForm onFormChange={this.onFormChange} contacts={contacts} />
-        <h2>Contacts</h2>
-      <Filter handleSearch={this.handleSearch} />
+      <h2>Contacts</h2>
 
-      <ContactList contacts={contacts} filteredContacts={filteredContacts} handleDelete={this.handleDelete} />
+      {contacts.length > 0 ?
+        (<>
+        <Filter handleSearch={this.handleSearch} />
+
+      {filteredContacts.length > 0 ?
+        <ContactList contacts={filteredContacts} handleDelete={this.handleDelete} /> :
+        <ContactList contacts={contacts} handleDelete={this.handleDelete} />
+      }
+        </>) :
+        (<p>No contacts yet. <br/> You`re alone :c</p>)
+      }
+
+      
+      
       
     </Container>
   );

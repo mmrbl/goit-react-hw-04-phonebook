@@ -8,11 +8,10 @@ export default class ContactList extends Component {
 
 
   render() {
-    const { contacts, filteredContacts, handleDelete } = this.props
-    const contactList = filteredContacts.length > 0 ? filteredContacts : contacts
+    const { contacts, handleDelete } = this.props
     return (
       <Ul>
-        {contactList.map((contact) => (
+        {contacts.map((contact) => (
           <ContactItem key={contact.id} id={contact.id} name={contact.name} number={contact.number} handleDelete={handleDelete} />
         ))
         }
@@ -23,6 +22,6 @@ export default class ContactList extends Component {
 
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
-  filteredContacts: PropTypes.array.isRequired,
+  filteredContacts: PropTypes.array,
   handleDelete: PropTypes.func.isRequired,
 }
