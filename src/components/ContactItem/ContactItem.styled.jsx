@@ -6,10 +6,10 @@ export const Li = styled.li`
 `
 
 export const Button = styled.button`
-margin-left: 10px;
+margin-left: 20px;
 border: 1px solid grey;
 border-radius: 4px;
-width: 50px;
+width: 70px;
 height: 20px;
 text-align: center;
 background-color: #FFF;

@@ -7,7 +7,7 @@ export default class ContactItem extends Component {
     const {id, name, number, handleDelete} = this.props
     return (
       <Li>
-        {name}: {number}
+        &bull; {name}: {number}
         <Button type='button' onClick={() => handleDelete(id, number)}>Delete</Button>
       </Li>
     )
