@@ -13,23 +13,10 @@ export function App() {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
-  function onFormChange(newContact) {
-     const isIncluded = contacts.some((contact) => contact.name.toLowerCase() === newContact.name.toLowerCase())
 
-    if (contacts.length > 0 && isIncluded) {
-      alert(`${toTitleCase(newContact.name)} is already in contacts.`)
-    } else {
-      setContacts([...contacts, newContact])
-    }
-  } 
-
-  function toTitleCase(name) {
-  return name
-    .toLowerCase()
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-  };
+  function handleAdd(newContact) {
+    setContacts([...contacts, newContact])
+  }
   
   function handleSearch(e){
     setFilter(e.currentTarget.value)
@@ -52,10 +39,9 @@ export function App() {
     console.log(parsedContacts)
     if (parsedContacts) {
        return () => {
-      
     setContacts(parsedContacts)
-    
-    } 
+      } 
+      
     }
    
 
@@ -70,7 +56,7 @@ export function App() {
 return (
     <Container>
       <h1>Phonebook</h1>
-      <ContactsForm onFormChange={onFormChange} contacts={contacts} />
+      <ContactsForm onFormChange={handleAdd} contacts={contacts} />
       <h2>Contacts</h2>
 
       {contacts.length > 0 ?
